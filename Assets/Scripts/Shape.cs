@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Shape : MonoBehaviour
 {
+    public GameObject player;
     public float speed;
     public bool reachedPlayer;
     private Vector3 targetScale;
@@ -19,7 +20,7 @@ public class Shape : MonoBehaviour
     void Start()
     {
         initialSpeed = speed;
-        cutoffScale = transform.localScale / 10;
+        cutoffScale = transform.localScale / 20;
         targetScale = transform.localScale / 50;
     }
 
@@ -33,7 +34,8 @@ public class Shape : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, speed * Time.deltaTime);
             if (transform.localScale.x < cutoffScale.x)
             {
-                GameObject.Destroy(this);
+                Debug.Log("kill??");
+                Destroy(this.gameObject);
             }
         }
     }

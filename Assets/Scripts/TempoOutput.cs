@@ -6,6 +6,8 @@ public class TempoOutput : MonoBehaviour
 {
     public float tempo;
     public bool beat;
+    public bool bar;
+    private int beatCount;
     private float timer;
     private float beatIncrement;
 
@@ -14,17 +16,26 @@ public class TempoOutput : MonoBehaviour
     {
         beatIncrement = 60 / tempo;
         timer = beatIncrement;
+        bar = true;
+        beat = true;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         beat = false;
+        bar = false;
         if (timer <= Time.time)
         {
             beat = true;
+            beatCount++;
             timer += beatIncrement;
             transform.GetComponent<AudioSource>().Play();
+            if (beatCount == 4)
+            {
+                bar = true;
+                beatCount = 0;
+            }
         }
         
     }

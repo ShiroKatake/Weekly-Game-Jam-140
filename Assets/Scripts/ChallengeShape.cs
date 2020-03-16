@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ChallengeShape : MonoBehaviour
 {    public GameObject musicManager;
-    public Sprite square;
-    public Sprite circle;
+    public GameObject square;
+    public GameObject circle;
     public List<Sprite> shapeQueue;
     private int shapeCount;
 
@@ -17,9 +17,9 @@ public class ChallengeShape : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (musicManager.GetComponent<TempoOutput>().beat)
+        if (musicManager.GetComponent<TempoOutput>().bar)
         {
-            Object.Instantiate(new Shape(shapeQueue[shapeCount]));
+            Instantiate(square);
             shapeCount += 1;
         }
     }
