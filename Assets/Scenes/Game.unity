@@ -990,7 +990,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cube: {fileID: 1895005983}
   sphere: {fileID: 437348449}
-  speed: 5
+  speed: 10
 --- !u!1 &1968688888
 GameObject:
   m_ObjectHideFlags: 0
