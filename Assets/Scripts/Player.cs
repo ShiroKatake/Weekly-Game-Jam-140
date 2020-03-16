@@ -34,18 +34,17 @@ public class Player : MonoBehaviour
     void Update()
     {
         rotate = false;
-
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playerState = State.Circle;
-        }
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKey(KeyCode.W))
         {
             playerState = State.Triangle;
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        else if (Input.GetKey(KeyCode.E))
         {
             playerState = State.Square;
+        }
+        else
+        {
+            playerState = State.Circle;
         }
         if (Input.GetKey(KeyCode.R))
         {
