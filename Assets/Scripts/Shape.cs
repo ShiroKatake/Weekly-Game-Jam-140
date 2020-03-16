@@ -20,7 +20,7 @@ public class Shape : MonoBehaviour
     void Start()
     {
         initialSpeed = speed;
-        cutoffScale = transform.localScale / 20;
+        cutoffScale = transform.localScale / 30;
         targetScale = transform.localScale / 50;
     }
 

@@ -724,6 +724,8 @@ MonoBehaviour:
   musicManager: {fileID: 1883958353}
   square: {fileID: 5114535856325726727, guid: 0fa3fc2d8cab46143bc039ab2ae1669d, type: 3}
   circle: {fileID: 2087523942293314577, guid: 2305d464ce23d3541b469c3d4ca8dac7, type: 3}
+  triangle: {fileID: 5114535856325726727, guid: 52815492de11ce6499e341dc564f6b50,
+    type: 3}
   shapeQueue: []
 --- !u!4 &1968688890
 Transform:

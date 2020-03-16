@@ -6,6 +6,7 @@ public class ChallengeShape : MonoBehaviour
 {    public GameObject musicManager;
     public GameObject square;
     public GameObject circle;
+    public GameObject triangle;
     public List<Sprite> shapeQueue;
     private int shapeCount;
 
@@ -17,9 +18,9 @@ public class ChallengeShape : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (musicManager.GetComponent<TempoOutput>().bar)
+        if (musicManager.GetComponent<TempoOutput>().beat)
         {
-            Instantiate(square);
+            Instantiate(triangle);
             shapeCount += 1;
         }
     }
