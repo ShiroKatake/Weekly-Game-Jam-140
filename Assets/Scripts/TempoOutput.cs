@@ -5,6 +5,7 @@ using UnityEngine;
 public class TempoOutput : MonoBehaviour
 {
     public float tempo;
+    public bool beat;
     private float timer;
     private float beatIncrement;
 
@@ -18,9 +19,10 @@ public class TempoOutput : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        beat = false;
         if (timer <= Time.time)
         {
-            Debug.Log("beat: " + Time.time + " : " + timer);
+            beat = true;
             timer += beatIncrement;
             transform.GetComponent<AudioSource>().Play();
         }
