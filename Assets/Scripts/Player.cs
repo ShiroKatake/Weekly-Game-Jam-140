@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     private Vector3 maxScale;
     private Vector3 maxTargetScale;
     private State playerState;
+    private bool rotate;
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +33,8 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        rotate = false;
+
         if (Input.GetKeyDown(KeyCode.Q))
         {
             playerState = State.Circle;
@@ -44,6 +47,23 @@ public class Player : MonoBehaviour
         {
             playerState = State.Square;
         }
+        if (Input.GetKey(KeyCode.R))
+        {
+            rotate = true;
+        }
+
+
+        Debug.Log(transform.rotation.z);
+
+        if (rotate && transform.rotation.z <= 0.45)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, 0, 0.45f, 0), Time.deltaTime);
+        }
+        else if (transform.rotation.z > 0)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, new Quaternion(0, 0, 0, 0), Time.deltaTime);
+
+        }
         if (playerState == State.Circle)
         {
             cube.transform.localScale = Vector3.Lerp(cube.transform.localScale, minScale, speed * Time.deltaTime);
@@ -52,7 +72,6 @@ public class Player : MonoBehaviour
         {
             if (cube.transform.localScale.x < maxScale.x)
             {
-                Debug.Log("cubing");
                 cube.transform.localScale = Vector3.Lerp(cube.transform.localScale, maxTargetScale, speed * Time.deltaTime);
 
             }

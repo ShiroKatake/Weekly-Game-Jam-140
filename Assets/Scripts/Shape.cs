@@ -20,7 +20,7 @@ public class Shape : MonoBehaviour
     void Start()
     {
         initialSpeed = speed;
-        cutoffScale = transform.localScale / 30;
+        cutoffScale = transform.localScale / 40;
         targetScale = transform.localScale / 50;
     }
 
@@ -34,7 +34,6 @@ public class Shape : MonoBehaviour
             transform.localScale = Vector3.Lerp(transform.localScale, targetScale, speed * Time.deltaTime);
             if (transform.localScale.x < cutoffScale.x)
             {
-                Debug.Log("kill??");
                 Destroy(this.gameObject);
             }
         }

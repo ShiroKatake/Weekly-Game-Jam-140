@@ -20,7 +20,7 @@ public class ChallengeShape : MonoBehaviour
     {
         if (musicManager.GetComponent<TempoOutput>().beat)
         {
-            Instantiate(triangle);
+            Instantiate(square);
             shapeCount += 1;
         }
     }
