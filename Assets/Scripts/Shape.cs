@@ -5,6 +5,7 @@ using UnityEngine;
 public class Shape : MonoBehaviour
 {
     public GameObject player;
+    public GameObject mainCamera;
     public float speed;
     public bool reachedPlayer;
     public State shapeState;
@@ -44,6 +45,9 @@ public class Shape : MonoBehaviour
                 if (active && player.GetComponent<Player>().playerState == shapeState)
                 {
                     Debug.Log("point awareded by: " + shapeState);
+                    mainCamera.GetComponent<Pulse>().active = true;
+                    mainCamera.GetComponent<Camera>().backgroundColor = Color.grey;
+
                     player.GetComponent<Player>().score++;
                     Destroy(this.gameObject);
                 }

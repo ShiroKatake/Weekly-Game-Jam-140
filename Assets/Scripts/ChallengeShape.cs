@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ChallengeShape : MonoBehaviour
 {
     public GameObject Player;
+    public GameObject mainCamera;
     public GameObject totalShapes;
     public GameObject musicManager;
     public GameObject square;
@@ -40,6 +41,7 @@ public class ChallengeShape : MonoBehaviour
                     break;
             }
             shape.GetComponent<Shape>().player = Player;
+            shape.GetComponent<Shape>().mainCamera = mainCamera;
             shapeCount += 1;
         }
     }

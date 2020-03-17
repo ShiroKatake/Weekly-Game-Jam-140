@@ -827,6 +827,7 @@ GameObject:
   - component: {fileID: 1388944942}
   - component: {fileID: 1388944941}
   - component: {fileID: 1388944944}
+  - component: {fileID: 1388944945}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -852,7 +853,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.03773582, g: 0.03773582, b: 0.03773582, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -959,6 +960,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &1388944945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388944940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3505d0ea369b5a4da5a8354aa4c5be9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCamera: {fileID: 1388944940}
+  active: 0
 --- !u!1 &1639698303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1115,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2c91026a5accb1f40a178824a9d7e244, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.338
+  m_Volume: 0.58
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -6129,6 +6144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1900913686}
+  mainCamera: {fileID: 1388944940}
   totalShapes: {fileID: 1332207783}
   musicManager: {fileID: 1883958353}
   square: {fileID: 5913210411467297355, guid: cee2ffd0e10774949bdc857c7b548f95, type: 3}
