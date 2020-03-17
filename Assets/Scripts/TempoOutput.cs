@@ -23,6 +23,7 @@ public class TempoOutput : MonoBehaviour
     void Start()
     {
         songTimer = Instantiate(songTimer);
+        GetComponent<AudioSource>().Play();
         beatIncrement = 60 / tempo;
         timer = beatIncrement;
         bar = true;
@@ -56,7 +57,6 @@ public class TempoOutput : MonoBehaviour
             timer += beatIncrement;
             beat = true;
             beatCount++;
-            transform.GetComponent<AudioSource>().Play();
             if (beatCount == 4)
             {
                 bar = true;

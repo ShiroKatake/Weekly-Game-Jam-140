@@ -17,19 +17,6 @@ public class Shape : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(this.name);
-        if (this.name == "Circle(Clone)")
-        {
-            shapeState = State.Circle;
-        }
-        else if (this.name == "Triangle(Clone)")
-        {
-            shapeState = State.Triangle;
-        }
-        else
-        {
-            shapeState = State.Square;
-        }
         cutoffScale = transform.localScale / 40;
         targetScale = transform.localScale / 50;
         activeScale = transform.localScale / 28;
