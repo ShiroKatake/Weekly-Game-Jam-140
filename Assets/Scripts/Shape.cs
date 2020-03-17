@@ -60,6 +60,11 @@ public class Shape : MonoBehaviour
                     player.GetComponent<Player>().score++;
                     Destroy(this.gameObject);
                 }
+                else if (active && player.GetComponent<Player>().playerState != State.None)
+                {
+                    Debug.Log("Missed!");
+                    Destroy(this.gameObject);
+                }
                 active = true;
             }
             
