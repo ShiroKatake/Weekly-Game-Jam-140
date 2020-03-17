@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class TempoOutput : MonoBehaviour
 {
+    public GameObject shape;
     public float tempo;
     public bool beat;
     public bool bar;
     public bool inputWindow;
+    private bool successfulPoint;
     private float leeway;
     private int beatCount;
+    private int barCount;
+    private int shapeCount;
     private float timer;
     private float beatIncrement;
 
@@ -28,14 +32,18 @@ public class TempoOutput : MonoBehaviour
     {
         beat = false;
         bar = false;
-        if (timer <= Time.time + leeway ||  (timer - (beatIncrement - leeway)) >= Time.time)
+
+        if (beatCount > 0)
         {
-            inputWindow = true;
-        }
-        else
-        {
-            inputWindow = false;
-            
+            if (timer <= Time.time + leeway || (timer - (beatIncrement - leeway)) >= Time.time)
+            {
+                inputWindow = true;
+            }
+            else
+            {
+                inputWindow = false;
+
+            }
         }
         if (timer <= Time.time)
         {
@@ -47,6 +55,7 @@ public class TempoOutput : MonoBehaviour
             {
                 bar = true;
                 beatCount = 0;
+                barCount++;
             }
         }
         

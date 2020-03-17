@@ -1,38 +1,45 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ChallengeShape : MonoBehaviour
-{    public GameObject musicManager;
+{
+    public GameObject Player;
+    public GameObject totalShapes;
+    public GameObject musicManager;
     public GameObject square;
     public GameObject circle;
     public GameObject triangle;
-    public List<int> shapeQueue;
+    private GameObject shape;
+    public List<State> shapeQueue;
     private int shapeCount;
 
     // Start is called before the first frame update
     void Start()
     {
-        shapeQueue = new List<int> { 0, 1, 2, 2, 1, 1, 2 };
+        shapeQueue = new List<State> { State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square };
+        totalShapes.GetComponent<Text>().text = shapeQueue.Count.ToString();
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (musicManager.GetComponent<TempoOutput>().bar)
+        if (musicManager.GetComponent<TempoOutput>().beat)
         {
             switch (shapeQueue[shapeCount])
             {
-                case 0:
-                    Instantiate(circle);
+                case State.Circle:
+                    shape = Instantiate(circle);
                     break;
-                case 1:
-                    Instantiate(triangle);
+                case State.Triangle:
+                    shape = Instantiate(triangle);
                     break;
-                case 2:
-                    Instantiate(square);
+                case State.Square:
+                    shape = Instantiate(square);
                     break;
             }
+            shape.GetComponent<Shape>().player = Player;
             shapeCount += 1;
         }
     }

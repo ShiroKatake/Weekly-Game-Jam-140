@@ -98,7 +98,7 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 0
   reachedPlayer: 0
-  shape: 
+  shape: 0
 --- !u!58 &5951588999590182922
 CircleCollider2D:
   m_ObjectHideFlags: 0

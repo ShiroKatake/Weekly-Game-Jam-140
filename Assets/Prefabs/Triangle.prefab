@@ -97,4 +97,4 @@ MonoBehaviour:
   player: {fileID: 0}
   speed: 0
   reachedPlayer: 0
-  shape: 
+  shape: 0
