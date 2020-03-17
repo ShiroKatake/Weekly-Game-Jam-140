@@ -18,6 +18,5 @@ public class Timer : MonoBehaviour
     void FixedUpdate()
     {
         counter = Time.time - initial;
-        Debug.Log(counter + " : " + initial);
     }
 }
