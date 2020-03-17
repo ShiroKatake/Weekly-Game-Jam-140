@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum State
 {
@@ -14,12 +15,14 @@ public class Player : MonoBehaviour
 
     public GameObject cube;
     public GameObject sphere;
+    public GameObject text;
     public float speed;
     private Vector3 minScale;
     private Vector3 maxScale;
     private Vector3 maxTargetScale;
     private State playerState;
     private bool rotate;
+    private int score;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +36,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        text.GetComponent<Text>().text = score.ToString("00"); 
         rotate = false;
         if (Input.GetKey(KeyCode.W))
         {
@@ -49,10 +53,8 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             rotate = true;
+            score++;
         }
-
-
-        Debug.Log(transform.rotation.z);
 
         if (rotate && transform.rotation.z <= 0.45)
         {

@@ -7,6 +7,7 @@ public class Shape : MonoBehaviour
     public GameObject player;
     public float speed;
     public bool reachedPlayer;
+    public string shape;
     private Vector3 targetScale;
     private Vector3 cutoffScale;
     private float initialSpeed;
@@ -14,6 +15,7 @@ public class Shape : MonoBehaviour
     public Shape(Sprite shape)
     {
         transform.GetComponent<SpriteRenderer>().sprite = shape;
+
     }
 
     // Start is called before the first frame update

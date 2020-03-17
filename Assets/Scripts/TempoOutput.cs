@@ -7,6 +7,8 @@ public class TempoOutput : MonoBehaviour
     public float tempo;
     public bool beat;
     public bool bar;
+    public bool inputWindow;
+    private float leeway;
     private int beatCount;
     private float timer;
     private float beatIncrement;
@@ -18,6 +20,7 @@ public class TempoOutput : MonoBehaviour
         timer = beatIncrement;
         bar = true;
         beat = true;
+        leeway = 0.2f;
     }
 
     // Update is called once per frame
@@ -25,11 +28,20 @@ public class TempoOutput : MonoBehaviour
     {
         beat = false;
         bar = false;
+        if (timer <= Time.time + leeway ||  (timer - (beatIncrement - leeway)) >= Time.time)
+        {
+            inputWindow = true;
+        }
+        else
+        {
+            inputWindow = false;
+            
+        }
         if (timer <= Time.time)
         {
+            timer += beatIncrement;
             beat = true;
             beatCount++;
-            timer += beatIncrement;
             transform.GetComponent<AudioSource>().Play();
             if (beatCount == 4)
             {
