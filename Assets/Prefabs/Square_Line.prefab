@@ -146,6 +146,6 @@ MonoBehaviour:
   ringManager: {fileID: 0}
   pulseColor: {r: 0.11089354, g: 0.11408635, b: 0.26415092, a: 0}
   missedColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0}
-  speed: 15
+  speed: 2
   reachedPlayer: 0
   shapeState: 0

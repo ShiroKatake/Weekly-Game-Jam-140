@@ -25,9 +25,9 @@ public class Ring : MonoBehaviour
     void Start()
     {
         initialScale = transform.localScale;
-        targetScale = transform.localScale / 50;
-        activeScale = transform.localScale / 30;
-        inactiveScale = transform.localScale / 32;
+        targetScale = new Vector3(0,0,0);
+        activeScale = transform.localScale / 12;
+        inactiveScale = transform.localScale /15;
 
         StartCoroutine(ApproachPlayer());
     }
@@ -37,9 +37,6 @@ public class Ring : MonoBehaviour
     {
         if (!reachedPlayer)
         {
-
-            
-
             //Check if the ring has reached the cutoff size. Ring is Destroyed when it does.
             Debug.Log(transform.localScale.x + " : " + targetScale.x);
             if (transform.localScale.x <= targetScale.x)
@@ -48,11 +45,13 @@ public class Ring : MonoBehaviour
             }
             else if (transform.localScale.x < inactiveScale.x)
             {
+                Debug.Log("Exit input window");
                 ringManager.mainCamera.GetComponent<Camera>().backgroundColor = missedColor;
                 active = false;
             }
             else if (transform.localScale.x < activeScale.x)
             {
+                Debug.Log("Enter input window");
                 if (active && ringManager.player.GetComponent<Player>().playerState == shapeState)
                 {
                     Debug.Log("point awareded by: " + shapeState);
@@ -82,6 +81,11 @@ public class Ring : MonoBehaviour
 
         while(timeStep < 1.0f)
         {
+            if (speed > 0.6)
+            {
+                speed -= 0.02f;
+            }
+            
             timeStep += Time.deltaTime * speed;
             transform.localScale = Vector3.Lerp(initialScale, targetScale, timeStep);
 
