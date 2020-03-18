@@ -6,6 +6,7 @@ public class Shape : MonoBehaviour
 {
     public GameObject player;
     public GameObject mainCamera;
+    public Color pulseColor;
     public float speed;
     public bool reachedPlayer;
     public State shapeState;
@@ -14,6 +15,7 @@ public class Shape : MonoBehaviour
     private Vector3 activeScale;
     private Vector3 inactiveScale;
     private bool active;
+    private bool pulse;
 
     // Start is called before the first frame update
     void Start()
@@ -42,11 +44,15 @@ public class Shape : MonoBehaviour
             }
             else if (transform.localScale.x < activeScale.x)
             {
+                if (!pulse)
+                {
+                    mainCamera.GetComponent<Camera>().backgroundColor = pulseColor;
+                    pulse = true;
+                }
                 if (active && player.GetComponent<Player>().playerState == shapeState)
                 {
                     Debug.Log("point awareded by: " + shapeState);
-                    mainCamera.GetComponent<Pulse>().active = true;
-                    mainCamera.GetComponent<Camera>().backgroundColor = Color.grey;
+                    
 
                     player.GetComponent<Player>().score++;
                     Destroy(this.gameObject);

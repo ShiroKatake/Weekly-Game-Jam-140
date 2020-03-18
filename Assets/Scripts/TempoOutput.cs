@@ -41,7 +41,6 @@ public class TempoOutput : MonoBehaviour
 
         if (beatCount > 0)
         {
-            Debug.Log(timer + " : " + songTimer.GetComponent<Timer>().counter);
             if (timer <= songTimer.GetComponent<Timer>().counter + leeway || (timer - (beatIncrement - leeway)) >= songTimer.GetComponent<Timer>().counter)
             {
                 inputWindow = true;

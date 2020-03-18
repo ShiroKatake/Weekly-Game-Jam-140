@@ -7,7 +7,9 @@ using UnityEngine.SceneManagement;
 public class ChallengeShape : MonoBehaviour
 {
     public GameObject fader;
-    public Color transparent, black;
+    public GameObject uIScore;
+    public GameObject uITimer;
+    public Color black;
     public GameObject Player;
     public GameObject mainCamera;
     public GameObject totalShapes;
@@ -17,15 +19,19 @@ public class ChallengeShape : MonoBehaviour
     public GameObject triangle;
     private GameObject shape;
     public List<State> shapeQueue;
+    public Color tempColor;
     private int shapeCount;
     private bool isCoroutineExecuting = false;
     private bool isFadeOutExecuting = false;
+    private bool fadeOut = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        shapeQueue = new List<State> { State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square };
+        shapeQueue = new List<State> { State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square };
         totalShapes.GetComponent<Text>().text = shapeQueue.Count.ToString();
+        tempColor = fader.GetComponent<Material>().color;
+
     }
 
     // Update is called once per frame
@@ -54,6 +60,13 @@ public class ChallengeShape : MonoBehaviour
             catch
             {
                 StartCoroutine(FadeOut(3));
+                if (fadeOut)
+                {
+                    uIScore.GetComponent<Text>().color = Color.Lerp(uIScore.GetComponent<Text>().color, black, Mathf.PingPong(Time.time / 2, 1));
+                    uIScore.GetComponent<Text>().color = Color.Lerp(uIScore.GetComponent<Text>().color, black, Mathf.PingPong(Time.time / 2, 1));
+                    tempColor.a = Mathf.MoveTowards(0, 1, Time.deltaTime);
+                    fader.GetComponent<Material>().color = tempColor;
+                }
                 StartCoroutine(SongEnd(6));
             }
             
@@ -62,15 +75,14 @@ public class ChallengeShape : MonoBehaviour
 
     IEnumerator FadeOut(float time)
     {
-        if (isCoroutineExecuting)
+        if (isFadeOutExecuting)
             yield break;
 
         isFadeOutExecuting = true;
 
         yield return new WaitForSeconds(time);
 
-        fader.GetComponent<Material>().color = Color.Lerp(transparent, black, 1);
-        
+        fadeOut = true;
 
         isFadeOutExecuting = false;
     }

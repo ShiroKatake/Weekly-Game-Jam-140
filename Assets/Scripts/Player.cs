@@ -68,9 +68,7 @@ public class Player : MonoBehaviour
         {
             rotate = true;
         }
-        if (Input.GetKey(KeyCode.T))
-        {
-        }
+
 
         if (rotate && transform.rotation.z <= 0.45)
         {

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Pulse : MonoBehaviour
 {
-    public GameObject mainCamera;
-    public bool active;
 
     // Start is called before the first frame update
     void Start()
@@ -16,10 +14,6 @@ public class Pulse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (active)
-        {
-            Debug.Log("Pulsing");
-            mainCamera.GetComponent<Camera>().backgroundColor = Color.Lerp(mainCamera.GetComponent<Camera>().backgroundColor, Color.black, Mathf.PingPong(Time.time, 1));
-        }
+        GetComponent<Camera>().backgroundColor = Color.Lerp(GetComponent<Camera>().backgroundColor, Color.black, Mathf.Lerp(0, 1, 20*Time.deltaTime));
     }
 }
