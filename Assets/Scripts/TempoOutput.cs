@@ -14,10 +14,9 @@ public class TempoOutput : MonoBehaviour
     private int totalBeats;
     private int beatsInBar;
     private int beatCount;
-    private int barCount;
     
     private float timer;
-    private float beatIncrement;
+    public float beatIncrement;
 
     // Start is called before the first frame update
     void Start()
@@ -65,13 +64,11 @@ public class TempoOutput : MonoBehaviour
         {
             timer += beatIncrement;
             beat = true;
-            beatCount++;
             beatsInBar++;
             if (beatCount == 4)
             {
                 bar = true;
                 beatsInBar = 0;
-                barCount++;
             }
         }
         

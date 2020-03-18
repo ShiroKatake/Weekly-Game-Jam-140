@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class ChallengeShape : MonoBehaviour
+public class RingManager : MonoBehaviour
 {
     public GameObject fader;
     public GameObject uIScore;
@@ -12,7 +12,7 @@ public class ChallengeShape : MonoBehaviour
     public GameObject badSound;
     public GameObject goodSound;
     public Color black;
-    public GameObject Player;
+    public GameObject player;
     public GameObject mainCamera;
     public GameObject musicManager;
     public GameObject square;
@@ -75,10 +75,7 @@ public class ChallengeShape : MonoBehaviour
                         shape = Instantiate(square);
                         break;
                 }
-                shape.GetComponent<Shape>().player = Player;
-                shape.GetComponent<Shape>().mainCamera = mainCamera;
-                shape.GetComponent<Shape>().badSound = badSound;
-                shape.GetComponent<Shape>().goodSound = goodSound;
+                shape.GetComponent<Ring>().ringManager = this;
                 shapeCount += 1;
             }
             catch
