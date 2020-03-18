@@ -19,6 +19,7 @@ public class ChallengeShape : MonoBehaviour
     public GameObject circle;
     public GameObject triangle;
     private GameObject shape;
+    public string shapesString;
     public List<State> shapeQueue;
     public Color tempColor;
     private int shapeCount;
@@ -29,8 +30,27 @@ public class ChallengeShape : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        shapeQueue = new List<State> { State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square };
-        
+        string[] shapelist = shapesString.Split('-');
+        shapeQueue = new List<State>();
+        foreach (string shape in shapelist)
+        {
+            if (shape == "q")
+            {
+                shapeQueue.Add(State.Circle);
+            }
+            else if (shape == "w")
+            {
+                shapeQueue.Add(State.Triangle);
+            }
+            else if (shape == "e")
+            {
+                shapeQueue.Add(State.Square);
+            }
+            else
+            {
+                shapeQueue.Add(State.None);
+            }
+        }        
         tempColor = fader.GetComponent<Material>().color;
 
     }
