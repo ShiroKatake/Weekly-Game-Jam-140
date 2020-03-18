@@ -10,11 +10,11 @@ public class TempoOutput : MonoBehaviour
     public bool bar;
     public bool inputWindow;
     public GameObject songTimer;
-    private bool successfulPoint;
     private float leeway;
+    private int totalBeats;
+    private int beatsInBar;
     private int beatCount;
     private int barCount;
-    private int shapeCount;
     
     private float timer;
     private float beatIncrement;
@@ -23,6 +23,7 @@ public class TempoOutput : MonoBehaviour
     void Start()
     {
         songTimer = Instantiate(songTimer);
+        totalBeats = 48;
         GetComponent<AudioSource>().Play();
         beatIncrement = 60 / tempo;
         timer = beatIncrement;
@@ -31,15 +32,24 @@ public class TempoOutput : MonoBehaviour
         leeway = 0.2f;
     }
 
+    public string BeatsRemaining
+    {
+        get
+        {
+            return (totalBeats - beatCount).ToString("00");
+        }
+    }
+    
+
     // Update is called once per frame
     void FixedUpdate()
     {
         beat = false;
         bar = false;
 
+        
 
-
-        if (beatCount > 0)
+        if (beatsInBar > 0)
         {
             if (timer <= songTimer.GetComponent<Timer>().counter + leeway || (timer - (beatIncrement - leeway)) >= songTimer.GetComponent<Timer>().counter)
             {
@@ -56,10 +66,11 @@ public class TempoOutput : MonoBehaviour
             timer += beatIncrement;
             beat = true;
             beatCount++;
+            beatsInBar++;
             if (beatCount == 4)
             {
                 bar = true;
-                beatCount = 0;
+                beatsInBar = 0;
                 barCount++;
             }
         }

@@ -12,7 +12,6 @@ public class ChallengeShape : MonoBehaviour
     public Color black;
     public GameObject Player;
     public GameObject mainCamera;
-    public GameObject totalShapes;
     public GameObject musicManager;
     public GameObject square;
     public GameObject circle;
@@ -29,7 +28,7 @@ public class ChallengeShape : MonoBehaviour
     void Start()
     {
         shapeQueue = new List<State> { State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Triangle, State.Square, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Square, State.Triangle, State.Triangle, State.Square, State.Circle, State.Triangle, State.Square, State.Square };
-        totalShapes.GetComponent<Text>().text = shapeQueue.Count.ToString();
+        
         tempColor = fader.GetComponent<Material>().color;
 
     }
@@ -39,6 +38,7 @@ public class ChallengeShape : MonoBehaviour
     {
         if (musicManager.GetComponent<TempoOutput>().beat)
         {
+            uITimer.GetComponent<Text>().text = (musicManager.GetComponent<TempoOutput>().BeatsRemaining);
             try
             {
                 switch (shapeQueue[shapeCount])
