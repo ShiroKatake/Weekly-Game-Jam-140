@@ -18,7 +18,8 @@ public class Pulse : MonoBehaviour
     {
         if (active)
         {
-            mainCamera.GetComponent<Camera>().backgroundColor = Color.Lerp(Color.gray, Color.black, 8*Time.deltaTime);
+            Debug.Log("Pulsing");
+            mainCamera.GetComponent<Camera>().backgroundColor = Color.Lerp(mainCamera.GetComponent<Camera>().backgroundColor, Color.black, Mathf.PingPong(Time.time, 1));
         }
     }
 }

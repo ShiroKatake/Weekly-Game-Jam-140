@@ -43,6 +43,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.SetInt("Score", score);
         text.GetComponent<Text>().text = score.ToString("00"); 
         rotate = false;
 
@@ -66,6 +67,9 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.R))
         {
             rotate = true;
+        }
+        if (Input.GetKey(KeyCode.T))
+        {
         }
 
         if (rotate && transform.rotation.z <= 0.45)

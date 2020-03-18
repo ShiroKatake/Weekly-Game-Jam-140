@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ChallengeShape : MonoBehaviour
 {
+    public GameObject fader;
+    public Color transparent, black;
     public GameObject Player;
     public GameObject mainCamera;
     public GameObject totalShapes;
@@ -15,6 +18,8 @@ public class ChallengeShape : MonoBehaviour
     private GameObject shape;
     public List<State> shapeQueue;
     private int shapeCount;
+    private bool isCoroutineExecuting = false;
+    private bool isFadeOutExecuting = false;
 
     // Start is called before the first frame update
     void Start()
@@ -28,21 +33,59 @@ public class ChallengeShape : MonoBehaviour
     {
         if (musicManager.GetComponent<TempoOutput>().beat)
         {
-            switch (shapeQueue[shapeCount])
+            try
             {
-                case State.Circle:
-                    shape = Instantiate(circle);
-                    break;
-                case State.Triangle:
-                    shape = Instantiate(triangle);
-                    break;
-                case State.Square:
-                    shape = Instantiate(square);
-                    break;
+                switch (shapeQueue[shapeCount])
+                {
+                    case State.Circle:
+                        shape = Instantiate(circle);
+                        break;
+                    case State.Triangle:
+                        shape = Instantiate(triangle);
+                        break;
+                    case State.Square:
+                        shape = Instantiate(square);
+                        break;
+                }
+                shape.GetComponent<Shape>().player = Player;
+                shape.GetComponent<Shape>().mainCamera = mainCamera;
+                shapeCount += 1;
             }
-            shape.GetComponent<Shape>().player = Player;
-            shape.GetComponent<Shape>().mainCamera = mainCamera;
-            shapeCount += 1;
+            catch
+            {
+                StartCoroutine(FadeOut(3));
+                StartCoroutine(SongEnd(6));
+            }
+            
         }
+    }
+
+    IEnumerator FadeOut(float time)
+    {
+        if (isCoroutineExecuting)
+            yield break;
+
+        isFadeOutExecuting = true;
+
+        yield return new WaitForSeconds(time);
+
+        fader.GetComponent<Material>().color = Color.Lerp(transparent, black, 1);
+        
+
+        isFadeOutExecuting = false;
+    }
+
+    IEnumerator SongEnd(float time)
+    {
+        if (isCoroutineExecuting)
+            yield break;
+
+        isCoroutineExecuting = true;
+
+        yield return new WaitForSeconds(time);
+
+        SceneManager.LoadScene(2);
+
+        isCoroutineExecuting = false;
     }
 }
