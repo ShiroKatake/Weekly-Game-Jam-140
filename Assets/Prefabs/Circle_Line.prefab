@@ -206,6 +206,6 @@ MonoBehaviour:
   goodSound: {fileID: 0}
   pulseColor: {r: 0.24528301, g: 0.07751868, b: 0.24528301, a: 0}
   missedColor: {r: 0.15686275, g: 0.15686275, b: 0.15686275, a: 0}
-  speed: 3
+  speed: 2.55
   reachedPlayer: 0
   shapeState: 1

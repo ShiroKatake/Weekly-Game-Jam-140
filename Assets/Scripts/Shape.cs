@@ -25,8 +25,8 @@ public class Shape : MonoBehaviour
     {
         cutoffScale = transform.localScale / 40;
         targetScale = transform.localScale / 50;
-        activeScale = transform.localScale / 28;
-        inactiveScale = transform.localScale / 29;
+        activeScale = transform.localScale / 30;
+        inactiveScale = transform.localScale / 32;
     }
 
     // Update is called once per frame
@@ -44,7 +44,6 @@ public class Shape : MonoBehaviour
             else if (transform.localScale.x < inactiveScale.x)
             {
                 mainCamera.GetComponent<Camera>().backgroundColor = missedColor;
-                badSound.GetComponent<AudioSource>().Play();
                 active = false;
             }
             else if (transform.localScale.x < activeScale.x)
