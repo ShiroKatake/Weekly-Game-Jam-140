@@ -9,6 +9,8 @@ public class ChallengeShape : MonoBehaviour
     public GameObject fader;
     public GameObject uIScore;
     public GameObject uITimer;
+    public GameObject badSound;
+    public GameObject goodSound;
     public Color black;
     public GameObject Player;
     public GameObject mainCamera;
@@ -55,6 +57,8 @@ public class ChallengeShape : MonoBehaviour
                 }
                 shape.GetComponent<Shape>().player = Player;
                 shape.GetComponent<Shape>().mainCamera = mainCamera;
+                shape.GetComponent<Shape>().badSound = badSound;
+                shape.GetComponent<Shape>().goodSound = goodSound;
                 shapeCount += 1;
             }
             catch

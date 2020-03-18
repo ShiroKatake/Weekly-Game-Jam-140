@@ -6,7 +6,10 @@ public class Shape : MonoBehaviour
 {
     public GameObject player;
     public GameObject mainCamera;
+    public GameObject badSound;
+    public GameObject goodSound;
     public Color pulseColor;
+    public Color missedColor;
     public float speed;
     public bool reachedPlayer;
     public State shapeState;
@@ -23,7 +26,7 @@ public class Shape : MonoBehaviour
         cutoffScale = transform.localScale / 40;
         targetScale = transform.localScale / 50;
         activeScale = transform.localScale / 28;
-        inactiveScale = transform.localScale / 34;
+        inactiveScale = transform.localScale / 29;
     }
 
     // Update is called once per frame
@@ -40,19 +43,17 @@ public class Shape : MonoBehaviour
             }
             else if (transform.localScale.x < inactiveScale.x)
             {
+                mainCamera.GetComponent<Camera>().backgroundColor = missedColor;
+                badSound.GetComponent<AudioSource>().Play();
                 active = false;
             }
             else if (transform.localScale.x < activeScale.x)
             {
-                if (!pulse)
-                {
-                    mainCamera.GetComponent<Camera>().backgroundColor = pulseColor;
-                    pulse = true;
-                }
                 if (active && player.GetComponent<Player>().playerState == shapeState)
                 {
                     Debug.Log("point awareded by: " + shapeState);
-                    
+                    mainCamera.GetComponent<Camera>().backgroundColor = pulseColor;
+                    goodSound.GetComponent<AudioSource>().Play();
 
                     player.GetComponent<Player>().score++;
                     Destroy(this.gameObject);
@@ -60,6 +61,8 @@ public class Shape : MonoBehaviour
                 else if (active && player.GetComponent<Player>().playerState != State.None)
                 {
                     Debug.Log("Missed!");
+                    mainCamera.GetComponent<Camera>().backgroundColor = missedColor;
+                    badSound.GetComponent<AudioSource>().Play();
                     Destroy(this.gameObject);
                 }
                 active = true;
