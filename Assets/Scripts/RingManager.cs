@@ -1,29 +1,25 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System;
 
 public class RingManager : MonoBehaviour
 {
-    public GameObject fader;
-    public GameObject uIScore;
-    public GameObject uITimer;
-    public GameObject badSound;
-    public GameObject goodSound;
-    public GameObject player;
-    public GameObject mainCamera;
-
+    public AudioSource badSound;
+    public AudioSource goodSound;
+    public Player player;
+    public Camera mainCamera;
+    public Song song;
     public TempoOutput tempoOutput;
+
+    // Ring Prefabs
     public GameObject square;
     public GameObject circle;
     public GameObject triangle;
-    public Song song;
+    
 
     private GameObject ring;
     private bool isCoroutineExecuting = false;
-    //private bool isFadeOutExecuting = false;
-    //private bool fadeOut = false;
 
     // Start is called before the first frame update
     void Start()
@@ -37,9 +33,10 @@ public class RingManager : MonoBehaviour
     {
         if (tempoOutput.Beat)
         {
-            uITimer.GetComponent<Text>().text = (tempoOutput.BeatsRemaining);
+            
             try
             {
+                // Create next ring in queue
                 switch (song.NextShape)
                 {
                     case State.Circle:
@@ -57,8 +54,11 @@ public class RingManager : MonoBehaviour
             }
             catch
             {
+                // End song when nullReference is thrown (when there are no more shapes in the queue
                 StartCoroutine(SongEnd(6));
             }
+
+            // When ring isn't null (when there is a rest in the queue)
             try
             {
                 ring.GetComponent<Ring>().ringManager = this;

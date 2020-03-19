@@ -13,19 +13,22 @@ public enum State
 
 public class Player : MonoBehaviour
 {
-
+    // Player models
     public GameObject cube;
     public GameObject cylinder;
     public GameObject triangle;
+
     public GameObject text;
     public float speed;
     public State playerState;
     public int score;
 
+    // Scale targets for activating and deactivating shapes
     private Vector3 minScale;
     private Vector3 maxScale;
     private Vector3 maxTriangleScale;
     private Vector3 maxTargetScale;
+
     private bool rotate;
     
 

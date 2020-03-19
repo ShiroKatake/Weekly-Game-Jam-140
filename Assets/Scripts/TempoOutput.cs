@@ -1,19 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TempoOutput : MonoBehaviour
 {
     public GameObject shape;
     public Song song;
+    public Text uITimer;
     public int beatOffest;
 
     private float leeway;
     private int beatsInBar;
     private int beatCount;
-    
 
-    private bool inputWindowActive;
     private bool beat = true;
     private bool bar = true;
     private float timer;
@@ -63,20 +63,8 @@ public class TempoOutput : MonoBehaviour
         beat = false;
         bar = false;
 
-        
+        uITimer.text = BeatsRemaining;
 
-        if (beatsInBar > 0)
-        {
-            if (timer <= song.Time + leeway || (timer - (song.BeatIncrement - leeway)) >= song.Time)
-            {
-                inputWindowActive = true;
-            }
-            else
-            {
-                inputWindowActive = false;
-
-            }
-        }
         if (timer <= song.Time)
         {
             timer += song.BeatIncrement;

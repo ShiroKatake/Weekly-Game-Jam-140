@@ -12,9 +12,10 @@ public class Song : MonoBehaviour
     public Timer songTimer;
 
     private float beatIncrement;
-    public List<State> shapeQueue;
+    public List<State> shapeQueue = new List<State>();
     private int i = -1;
 
+    // Return the next shape in the queue
     public State NextShape
     {
         get
@@ -44,11 +45,11 @@ public class Song : MonoBehaviour
     void Start()
     {
         beatIncrement = 60 / tempo;
-
         songTimer = Instantiate(songTimer);
 
+        // Take the input string and convert it into a list of states
         string[] shapelist = shapeString.Split('-');
-        shapeQueue = new List<State>();
+        
         foreach (string shape in shapelist)
         {
             if (shape == "q")
@@ -68,11 +69,6 @@ public class Song : MonoBehaviour
                 shapeQueue.Add(State.None);
             }
         }
-        //for (int i = 0; i < shapeQueue.Count; i++)
-        //{
-        //    Debug.Log(shapeQueue[i]);
-        //}
-        
     }
 
     // Update is called once per frame
