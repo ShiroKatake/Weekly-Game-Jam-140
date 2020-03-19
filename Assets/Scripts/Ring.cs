@@ -8,7 +8,7 @@ public class Ring : MonoBehaviour
 
     public Color pulseColor;
     public Color missedColor;
-    public float speed;
+    private float speed = 1.95f;
     public bool reachedPlayer;
     public State shapeState;
 
@@ -24,10 +24,11 @@ public class Ring : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Debug.Log("this exists");
         initialScale = transform.localScale;
         targetScale = new Vector3(0,0,0);
-        activeScale = transform.localScale / 12;
-        inactiveScale = transform.localScale /15;
+        activeScale = transform.localScale / 20;
+        inactiveScale = transform.localScale /25;
 
         StartCoroutine(ApproachPlayer());
     }
@@ -35,6 +36,7 @@ public class Ring : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (!reachedPlayer)
         {
             //Check if the ring has reached the cutoff size. Ring is Destroyed when it does.

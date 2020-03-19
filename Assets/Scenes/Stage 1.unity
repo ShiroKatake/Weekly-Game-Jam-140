@@ -771,7 +771,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf1af1529c423ea45a366d8d1d18a4b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counter: 0
 --- !u!1 &1332207783
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,12 +1243,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shape: {fileID: 1968688888}
-  tempo: 240
-  beat: 0
-  bar: 0
-  inputWindow: 0
-  songTimer: {fileID: 1306715725}
-  beatIncrement: 0
+  song: {fileID: 2041510166}
+  beatOffest: 4
 --- !u!4 &1883958355
 Transform:
   m_ObjectHideFlags: 0
@@ -1264,6 +1259,7 @@ Transform:
   - {fileID: 1580323963}
   - {fileID: 1996557501}
   - {fileID: 1306715726}
+  - {fileID: 2041510164}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6405,17 +6401,14 @@ MonoBehaviour:
   uITimer: {fileID: 1332207783}
   badSound: {fileID: 1580323961}
   goodSound: {fileID: 1996557499}
-  black: {r: 0, g: 0, b: 0, a: 1}
   player: {fileID: 1900913686}
   mainCamera: {fileID: 1388944940}
-  musicManager: {fileID: 1883958353}
+  tempoOutput: {fileID: 1883958354}
   square: {fileID: 5913210411467297355, guid: cee2ffd0e10774949bdc857c7b548f95, type: 3}
   circle: {fileID: 29110421465250827, guid: 853628fff4a8024499fa4aa4ed94e374, type: 3}
   triangle: {fileID: 6490728376668083644, guid: 3916414367f58e84dad873e7568d8631,
     type: 3}
-  shapesString: q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-e-o-w-w-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q
-  shapeQueue: 
-  tempColor: {r: 0, g: 0, b: 0, a: 0}
+  song: {fileID: 2041510166}
 --- !u!4 &1968688890
 Transform:
   m_ObjectHideFlags: 0
@@ -6557,3 +6550,149 @@ Transform:
   m_Father: {fileID: 1883958355}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2041510163
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2041510164}
+  - component: {fileID: 2041510166}
+  - component: {fileID: 2041510165}
+  m_Layer: 0
+  m_Name: Song
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2041510164
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041510163}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 59.72, y: 237.63, z: 2.4593854}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1883958355}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &2041510165
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041510163}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2c91026a5accb1f40a178824a9d7e244, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &2041510166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2041510163}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8a211dcd006dfb4f88c97493d0fa9b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  song: {fileID: 2041510165}
+  tempo: 240
+  totalBeats: 90
+  shapeString: q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-e-o-w-w-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q
+  songTimer: {fileID: 1306715727}
+  shapeQueue: 

@@ -5,40 +5,57 @@ using UnityEngine;
 public class TempoOutput : MonoBehaviour
 {
     public GameObject shape;
-    public float tempo;
-    public bool beat;
-    public bool bar;
-    public bool inputWindow;
-    public GameObject songTimer;
+    public Song song;
+    public int beatOffest;
+
     private float leeway;
-    private int totalBeats;
     private int beatsInBar;
     private int beatCount;
     
-    private float timer;
-    public float beatIncrement;
 
-    // Start is called before the first frame update
-    void Start()
+    private bool inputWindowActive;
+    private bool beat = true;
+    private bool bar = true;
+    private float timer;
+
+    public bool Beat
     {
-        songTimer = Instantiate(songTimer);
-        totalBeats = 48;
-        GetComponent<AudioSource>().Play();
-        beatIncrement = 60 / tempo;
-        timer = beatIncrement;
-        bar = true;
-        beat = true;
-        leeway = 0.2f;
+        get
+        {
+            return beat;
+        }
+    }
+
+    public bool Bar
+    {
+        get
+        {
+            return bar;
+        }
     }
 
     public string BeatsRemaining
     {
         get
         {
-            return (totalBeats - beatCount).ToString("00");
+            int beats = song.totalBeats - beatCount + beatOffest;
+            if (beats < 0)
+            {
+                beats = 0;
+            }
+            return (beats.ToString("00"));
         }
     }
-    
+
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        
+        song.song.Play();
+        timer = song.BeatIncrement;
+        leeway = 0.2f;
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -50,22 +67,23 @@ public class TempoOutput : MonoBehaviour
 
         if (beatsInBar > 0)
         {
-            if (timer <= songTimer.GetComponent<Timer>().counter + leeway || (timer - (beatIncrement - leeway)) >= songTimer.GetComponent<Timer>().counter)
+            if (timer <= song.Time + leeway || (timer - (song.BeatIncrement - leeway)) >= song.Time)
             {
-                inputWindow = true;
+                inputWindowActive = true;
             }
             else
             {
-                inputWindow = false;
+                inputWindowActive = false;
 
             }
         }
-        if (timer <= songTimer.GetComponent<Timer>().counter)
+        if (timer <= song.Time)
         {
-            timer += beatIncrement;
+            timer += song.BeatIncrement;
             beat = true;
             beatsInBar++;
-            if (beatCount == 4)
+            beatCount++;
+            if (beatsInBar == 4)
             {
                 bar = true;
                 beatsInBar = 0;

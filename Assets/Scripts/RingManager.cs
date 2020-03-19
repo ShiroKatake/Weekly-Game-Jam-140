@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 public class RingManager : MonoBehaviour
 {
@@ -11,101 +11,63 @@ public class RingManager : MonoBehaviour
     public GameObject uITimer;
     public GameObject badSound;
     public GameObject goodSound;
-    public Color black;
     public GameObject player;
     public GameObject mainCamera;
-    public GameObject musicManager;
+
+    public TempoOutput tempoOutput;
     public GameObject square;
     public GameObject circle;
     public GameObject triangle;
-    private GameObject shape;
-    public string shapesString;
-    public List<State> shapeQueue;
-    public Color tempColor;
-    private int shapeCount;
+    public Song song;
+
+    private GameObject ring;
     private bool isCoroutineExecuting = false;
-    private bool isFadeOutExecuting = false;
-    private bool fadeOut = false;
+    //private bool isFadeOutExecuting = false;
+    //private bool fadeOut = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        string[] shapelist = shapesString.Split('-');
-        shapeQueue = new List<State>();
-        foreach (string shape in shapelist)
-        {
-            if (shape == "q")
-            {
-                shapeQueue.Add(State.Circle);
-            }
-            else if (shape == "w")
-            {
-                shapeQueue.Add(State.Triangle);
-            }
-            else if (shape == "e")
-            {
-                shapeQueue.Add(State.Square);
-            }
-            else
-            {
-                shapeQueue.Add(State.None);
-            }
-        }        
-        tempColor = fader.GetComponent<Material>().color;
+        
 
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (musicManager.GetComponent<TempoOutput>().beat)
+        if (tempoOutput.Beat)
         {
-            uITimer.GetComponent<Text>().text = (musicManager.GetComponent<TempoOutput>().BeatsRemaining);
+            uITimer.GetComponent<Text>().text = (tempoOutput.BeatsRemaining);
             try
             {
-                switch (shapeQueue[shapeCount])
+                switch (song.NextShape)
                 {
                     case State.Circle:
-                        shape = Instantiate(circle);
+                        ring = Instantiate(circle);
                         break;
                     case State.Triangle:
-                        shape = Instantiate(triangle);
+                        ring = Instantiate(triangle);
                         break;
                     case State.Square:
-                        shape = Instantiate(square);
+                        ring = Instantiate(square);
+                        break;
+                    case State.None:
                         break;
                 }
-                shape.GetComponent<Ring>().ringManager = this;
-                shapeCount += 1;
             }
             catch
             {
-                StartCoroutine(FadeOut(3));
-                if (fadeOut)
-                {
-                    uIScore.GetComponent<Text>().color = Color.Lerp(uIScore.GetComponent<Text>().color, black, Mathf.PingPong(Time.time / 2, 1));
-                    uIScore.GetComponent<Text>().color = Color.Lerp(uIScore.GetComponent<Text>().color, black, Mathf.PingPong(Time.time / 2, 1));
-                    tempColor.a = Mathf.MoveTowards(0, 1, Time.deltaTime);
-                    fader.GetComponent<Material>().color = tempColor;
-                }
                 StartCoroutine(SongEnd(6));
             }
-            
+            try
+            {
+                ring.GetComponent<Ring>().ringManager = this;
+            }
+            catch
+            {
+
+            }
         }
-    }
-
-    IEnumerator FadeOut(float time)
-    {
-        if (isFadeOutExecuting)
-            yield break;
-
-        isFadeOutExecuting = true;
-
-        yield return new WaitForSeconds(time);
-
-        fadeOut = true;
-
-        isFadeOutExecuting = false;
     }
 
     IEnumerator SongEnd(float time)
@@ -117,7 +79,7 @@ public class RingManager : MonoBehaviour
 
         yield return new WaitForSeconds(time);
 
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(1);
 
         isCoroutineExecuting = false;
     }

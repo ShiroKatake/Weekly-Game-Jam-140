@@ -7,14 +7,17 @@ EditorBuildSettings:
   m_Scenes:
   - enabled: 0
     path: 
-    guid: 2cda990e2423bbf4892e6590ba056729
+    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: eda93e4c8babdd8498bb3789892dabeb
   - enabled: 1
+    path: Assets/Scenes/SongEnd.unity
+    guid: db4eb4a5e768f874b85a41fae51b1012
+  - enabled: 1
     path: Assets/Scenes/Stage 1.unity
     guid: 9134233dfa300984c81bf1481b153166
   - enabled: 1
-    path: Assets/Scenes/SongEnd.unity
-    guid: db4eb4a5e768f874b85a41fae51b1012
+    path: Assets/Scenes/Stage 2.unity
+    guid: 1fe58685964cab34e8cfa9029755a996
   m_configObjects: {}

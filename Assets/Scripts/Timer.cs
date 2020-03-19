@@ -4,9 +4,16 @@ using UnityEngine;
 
 public class Timer : MonoBehaviour
 {
-    public float counter;
+    private float counter;
     private float initial;
 
+    public float Counter
+    {
+        get
+        {
+            return counter;
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
