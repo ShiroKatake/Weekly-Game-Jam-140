@@ -10,13 +10,21 @@ public class TempoOutput : MonoBehaviour
     public Text uITimer;
     public int beatOffest;
 
-    private float leeway;
     private int beatsInBar;
     private int beatCount;
 
-    private bool beat = true;
-    private bool bar = true;
+    private bool beat;
+    private bool bar;
     private float timer;
+    private bool paused;
+
+    public bool Paused
+    {
+        get
+        {
+            return paused;
+        }
+    }
 
     public bool Beat
     {
@@ -51,10 +59,7 @@ public class TempoOutput : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        song.song.Play();
         timer = song.BeatIncrement;
-        leeway = 0.2f;
     }
 
     // Update is called once per frame
@@ -64,8 +69,8 @@ public class TempoOutput : MonoBehaviour
         bar = false;
 
         uITimer.text = BeatsRemaining;
-
-        if (timer <= song.Time)
+        
+        if (song.Time > 0 && timer <= song.Time)
         {
             timer += song.BeatIncrement;
             beat = true;
@@ -77,6 +82,17 @@ public class TempoOutput : MonoBehaviour
                 beatsInBar = 0;
             }
         }
-        
+    }
+
+    public void Pause()
+    {
+        song.Pause();
+        paused = true;
+    }
+
+    public void Play()
+    {
+        song.Play();
+        paused = false;
     }
 }

@@ -6,6 +6,8 @@ public class Timer : MonoBehaviour
 {
     private float counter;
     private float initial;
+    private bool paused;
+    private float pause;
 
     public float Counter
     {
@@ -24,6 +26,23 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        counter = Time.time - initial;
+        if (!paused)
+        {
+            counter = Time.time - initial - pause;
+        }
+        else
+        {
+            pause += Time.deltaTime;
+        }
+    }
+
+    public void Pause()
+    {
+        paused = true;
+    }
+
+    public void Play()
+    {
+        paused = false;
     }
 }

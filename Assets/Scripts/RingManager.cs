@@ -21,6 +21,14 @@ public class RingManager : MonoBehaviour
     private GameObject ring;
     private bool isCoroutineExecuting = false;
 
+    public bool Paused
+    {
+        get
+        {
+            return tempoOutput.Paused;
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -31,9 +39,8 @@ public class RingManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (tempoOutput.Beat)
+        if (tempoOutput.Beat && !tempoOutput.Paused)
         {
-            
             try
             {
                 // Create next ring in queue
@@ -78,8 +85,7 @@ public class RingManager : MonoBehaviour
         isCoroutineExecuting = true;
 
         yield return new WaitForSeconds(time);
-
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
 
         isCoroutineExecuting = false;
     }

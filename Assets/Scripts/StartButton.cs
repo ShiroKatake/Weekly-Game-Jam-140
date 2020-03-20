@@ -5,8 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class StartButton : MonoBehaviour
 {
-    public void ChangeMenuScreen(string sceneName)
+    public void ChangeMenuScreen(string scene)
     {
-        SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(scene);
     }
 }
