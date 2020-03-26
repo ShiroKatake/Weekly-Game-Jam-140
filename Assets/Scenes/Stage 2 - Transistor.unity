@@ -5085,7 +5085,7 @@ MonoBehaviour:
   tempo: 240
   totalBeats: 90
   ringString: q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-e-o-w-w-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-e-o-w-w-o-e-e-o-o-o-o-o-o-o-w-o-w-o-e-o-e-o-q-q-o-w-w-o-e-o-w-o-w-o-e-o-e-o-q-q-o-w-w-o-e-o-w-o-w-o-e-o-e-o-q-q-o-w-w-o-e-o-w-o-w-o-e-o-e-o-q-q-o-w-w-o-e-o-w-w-q-o-e-o-e-e-o-q-q-o-w-o-e-o-w-w-q-o-e-o-e-o-q-q-o-w-w-o-e-o-w-w-o-e-e-o-e-e-o-q-q-o-w-o-e-o-w-w-o-e-e-o-e-e-o-q-q-o-w-o-e-o-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-e-o-w-w-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-q-o-e-e-o-q-q-o-q-o-q-w-o-q-q-o-e-o-w-w-o-e-e-o-q-q-o-q-o-q-o-w
-  individualSongOffset: 5.7
+  individualSongOffset: 6.7
   ringQueue: 
   songTimer: {fileID: 1427226060}
 --- !u!82 &233969917

@@ -39,6 +39,7 @@ public class RingManager : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        Debug.Log(tempoOutput.Beat + " : " + tempoOutput.Paused);
         if (tempoOutput.Beat && !tempoOutput.Paused)
         {
             try

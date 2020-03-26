@@ -8,7 +8,7 @@ public class Ring : MonoBehaviour
 
     public Color pulseColor;
     public Color missedColor;
-    private float speed = 2.05f;
+    private float speed = 1.05f;
     public bool reachedPlayer;
     public State shapeState;
 
